@@ -12,3 +12,76 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+body {
+  font-size: 12px;
+
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.products {
+  margin-top: 10px;
+  list-style: none;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: row;
+  min-height: 200px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.product-item__link {
+  float: left;
+  margin: -0.5em 1em 1.5em 0;
+  padding-bottom: 1em;
+  height: 100px;
+  width: 100px;
+}
+
+.product-item__image {
+  border-radius: 4px;
+  padding-top: 5px;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.product-item__details {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.button  {
+  align-self: center;
+  opacity: 0.5;
+  margin: 5px 5px;
+  width: 150px;
+  height: 40px;
+  background: #676470;
+  color: #fff;
+  font-family: Lato;
+  font-weight: 20;
+  font-size: 20px;
+  text-align: center;
+  line-height: 20px;
+  transition: all 0.3s;
+}
+
+.button:hover {
+  opacity:1;
+}
+
+.button:active, .button:focus {
+  outline: none !important;
+}

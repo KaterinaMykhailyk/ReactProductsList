@@ -78,6 +78,20 @@ body {
   transition: all 0.3s;
 }
 
+.input  {
+  align-self: center;
+  opacity: 0.5;
+  margin: 5px 5px;
+  width: 150px;
+  height: 40px;
+  font-family: Lato;
+  font-size: 20px;
+  text-align: center;
+  line-height: 20px;
+  transition: all 0.3s;
+}
+
+
 .button:hover {
   opacity:1;
 }

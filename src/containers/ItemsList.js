@@ -3,15 +3,23 @@ import Item from '../components/Item';
 import {connect} from 'react-redux';
 
 class ItemsList extends Component {
+
+    shouldComponentUpdate(nextProps) {
+        return nextProps !== this.props;
+    }
+
     render() {
-        const {items, isFetching} = this.props;
-        console.log (this.props);
+        const {items, isFetching, searchValue} = this.props;
+        const itemsElements = searchValue.length !== false ? items.filter((item) => {
+            return item.name.toLowerCase().includes(searchValue)
+        }) : items;
+
         return (
             <Fragment>
                 {
                     isFetching ? "waiting for products" :
                         <div className="products">
-                            {items.map((item) => <Item product={item} key={item.asin}/>)}
+                            {itemsElements.map((item) => <Item product={item} key={item.asin}/>)}
                         </div>
                 }
             </Fragment>
@@ -22,16 +30,18 @@ class ItemsList extends Component {
 
 const mapStateToProps = (state) => {
     const {products} = state;
-    const {isFetching, lastUpdated, items} = products ||
+    let {isFetching, lastUpdated, items, searchValue} = products ||
     {
         isFetching: true,
-        items: []
+        items: [],
+        searchValue: ""
     };
 
     return {
         items,
         isFetching,
-        lastUpdated
+        lastUpdated,
+        searchValue
     }
 };
 

@@ -6,7 +6,7 @@ const Item = (props) => {
         <div className="product-item">
             <div>
                 <a href={product.link} className="product-item__link">
-                    <img src={product.img} className="product-item__image"/>
+                    <img src={product.img} alt="no picture" className="product-item__image"/>
                 </a>
             </div>
             <div className="product-item__details">

@@ -1,16 +1,14 @@
-import { SHOW_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS } from '../constants/index.js';
+import { SEARCH_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS } from '../constants/index.js';
 import { getProductsFromAPI } from '../api/index.js';
 
-export function showProducts (products) {
+export function searchProducts (searchValue) {
     return {
-        type: SHOW_PRODUCTS,
-        products
+        type: SEARCH_PRODUCTS,
+        searchValue
     }
 }
 
 export const fetchProductsIfNeeded = () => (dispatch, getState) => {
-    console.log("I am in fetchProductsIfNeeded!");
-    // dispatch(showProducts());
     if (shouldFetchProducts(getState())) {
         return dispatch(fetchProducts())
     }

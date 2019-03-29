@@ -1,10 +1,11 @@
-import {INVALIDATE_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS} from  "../constants";
+import {INVALIDATE_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, SEARCH_PRODUCTS} from  "../constants";
 import {combineReducers} from 'redux';
 
 const products = (state = {
     isFetching: false,
     didInvalidate: false,
-    items: []
+    items: [],
+    searchValue: ""
 }, action) => {
     switch (action.type) {
         case INVALIDATE_PRODUCTS:
@@ -25,6 +26,11 @@ const products = (state = {
                 didInvalidate: false,
                 items: action.products,
                 lastUpdated: action.receivedAt
+            };
+        case SEARCH_PRODUCTS:
+            return {
+                ...state,
+                searchValue: action.searchValue
             };
         default:
             return state

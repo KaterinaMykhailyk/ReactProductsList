@@ -1,12 +1,15 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
 
 const Input = (props) => {
-    const {onChange, value, onKeyPress} = props;
-    console.log(props);
+    const {onChange, value, onClick} = props;
     return (
-        <div className="wrapper">
-            <input type="text" className="input" value={value} onChange={onChange} onKeyPress={onKeyPress}/>
-        </div>
+                <Form inline>
+                    <FormControl type="text" placeholder="Search" className="mr-sm-2" value={value} onChange={onChange} />
+                    <Button variant="outline-primary" onClick={onClick}>Search</Button>
+                </Form>
     )
 };
 

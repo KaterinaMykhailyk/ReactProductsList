@@ -1,13 +1,11 @@
-import React, {Fragment, Component} from 'react';
+import React, {Component} from 'react';
 import Item from '../components/Item';
 import {connect} from 'react-redux';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Spinner from 'react-bootstrap/Spinner';
 
 class ItemsList extends Component {
-
-    shouldComponentUpdate(nextProps) {
-        return nextProps !== this.props;
-    }
-
     render() {
         const {items, isFetching, searchValue} = this.props;
         const itemsElements = searchValue.length !== false ? items.filter((item) => {
@@ -15,14 +13,19 @@ class ItemsList extends Component {
         }) : items;
 
         return (
-            <Fragment>
-                {
-                    isFetching ? "waiting for products" :
-                        <div className="products">
-                            {itemsElements.map((item) => <Item product={item} key={item.asin}/>)}
-                        </div>
-                }
-            </Fragment>
+            <Col style={{paddingTop: "19px"}}>
+                <Row>
+                    {
+                        isFetching
+                            ?
+                            <Spinner animation="border" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </Spinner>
+                            :
+                            itemsElements.map((item) => <Item product={item} key={item.asin}/>)
+                    }
+                </Row>
+            </Col>
 
         )
     }

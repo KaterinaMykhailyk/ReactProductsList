@@ -1,20 +1,23 @@
 import React from 'react';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 const Item = (props) => {
     const {product} = props;
     return (
-        <div className="product-item">
-            <div>
-                <a href={product.link} className="product-item__link">
-                    <img src={product.img} alt="no picture" className="product-item__image"/>
+        <Col lg="12">
+            <Card style={{marginBottom: "20px", paddingBottom: "27px"}}>
+                <a href={product.link}>
+                    <Card.Img src={product.img} className="product-item__image" rounded fluid/>
                 </a>
-            </div>
-            <div className="product-item__details">
-                <div>{product.name}</div>
-                <div>{product.price} {product.currency}</div>
-                <div>{product.bsr_category}</div>
-            </div>
-        </div>
+                <Card.Body>
+                    <Card.Text>{product.name}</Card.Text>
+                    <Button style={{marginRight: "10px" }} variant="info" disabled>{product.price} {product.currency}</Button>
+                    <Button variant="info" disabled>{product.bsr_category}</Button>
+                </Card.Body>
+            </Card>
+        </Col>
     )
 };
 

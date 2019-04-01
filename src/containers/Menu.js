@@ -1,26 +1,43 @@
 import React, {Component} from 'react';
-import Col from 'react-bootstrap/Col';
+import {connect} from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import {setFilterCategory} from "../actions";
 
 class Menu extends Component {
+
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(event) {
+        console.log(this.props);
+        console.log(event.target.innerText);
+        this.props.onSetCategory(event.target.innerText);
+    }
+
     render() {
         return (
-                    <Col sm={3} xs={12}>
-                        <Card style={{margin: "20px"}}>
-                            <Card.Header style={{padding: "20px"}}>CATEGORIES</Card.Header>
-                            <ListGroup>
-                                <ListGroup.Item action href="#link1" style={{padding: "20px"}}>CATEGORY 1</ListGroup.Item>
-                                <ListGroup.Item  action href="#link2" style={{padding: "20px"}}>CATEGORY 2</ListGroup.Item>
-                                <ListGroup.Item  action href="#link3" style={{padding: "20px"}}>CATEGORY 3</ListGroup.Item>
-                                <ListGroup.Item  action href="#link4" style={{padding: "20px"}}>CATEGORY 4</ListGroup.Item>
-                                <ListGroup.Item  action href="#link5" style={{padding: "20px"}}>CATEGORY 5</ListGroup.Item>
-                            </ListGroup>
-                        </Card>
-                    </Col>
-
+            <Card style={{margin: "20px"}}>
+                <Card.Header style={{padding: "20px"}}>CATEGORIES</Card.Header>
+                <ListGroup>
+                    <ListGroup.Item action href="#link1" style={{padding: "20px"}} onClick={this.handleClick} >Home & Kitchen</ListGroup.Item>
+                    <ListGroup.Item action href="#link2" style={{padding: "20px"}} onClick={this.handleClick}>Sports & Outdoors</ListGroup.Item>
+                    <ListGroup.Item action href="#link3" style={{padding: "20px"}} onClick={this.handleClick}>Health & Personal Care</ListGroup.Item>
+                    <ListGroup.Item action href="#link4" style={{padding: "20px"}} onClick={this.handleClick}>Baby Products</ListGroup.Item>
+                </ListGroup>
+            </Card>
         )
     }
 }
 
-export default Menu;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSetCategory: (category) => {
+            dispatch(setFilterCategory(category));
+        }
+    }
+};
+
+export default connect(null, mapDispatchToProps)(Menu);

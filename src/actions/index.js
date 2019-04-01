@@ -1,7 +1,14 @@
-import { SEARCH_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS } from '../constants/index.js';
-import { getProductsFromAPI } from '../api/index.js';
+import {SEARCH_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, SET_CATEGORY} from '../constants/index.js';
+import {getProductsFromAPI} from '../api/index.js';
 
-export function searchProducts (searchValue) {
+export function setFilterCategory(category) {
+    return {
+        type: SET_CATEGORY,
+        category
+    }
+}
+
+export function searchProducts(searchValue) {
     return {
         type: SEARCH_PRODUCTS,
         searchValue

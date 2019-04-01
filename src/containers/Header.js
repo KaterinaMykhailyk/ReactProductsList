@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Input from '../components/Input';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import Input from '../components/Input';
 import {fetchProductsIfNeeded, searchProducts} from "../actions";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -15,6 +16,10 @@ class Header extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.onFetchProductsIfNeeded();
+    }
+
     handleClick(event) {
         this.props.onSearch(this.state.searchValue);
     }
@@ -23,19 +28,15 @@ class Header extends Component {
         this.setState({searchValue: event.target.value.toLowerCase()});
     }
 
-    componentDidMount() {
-        this.props.onFetchProductsIfNeeded();
-    }
-
     render() {
         return (
-                <Container fluid="true">
-                    <Navbar bg="light" variant="light" position="sticky-top" expand="true">
-                        <Navbar.Brand href="#home">React Product List</Navbar.Brand>
-                        <Input onChange={this.handleChange} value={this.state.searchValue}
-                               onClick={this.handleClick}/>
-                    </Navbar>
-                </Container>
+            <Container fluid="true">
+                <Navbar bg="light" variant="light" position="sticky-top" expand="true">
+                    <Navbar.Brand href="#home">React Product List</Navbar.Brand>
+                    <Input onChange={this.handleChange} value={this.state.searchValue}
+                           onClick={this.handleClick}/>
+                </Navbar>
+            </Container>
         )
     }
 }
@@ -51,5 +52,9 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
+Header.propTypes = {
+    onFetchProductsIfNeeded: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired
+};
 
 export default connect(null, mapDispatchToProps)(Header);

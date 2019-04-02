@@ -10,7 +10,7 @@ const Item = (props) => {
         <Col lg="12">
             <Card style={{marginBottom: "20px", paddingBottom: "27px"}}>
                 <a href={product.link}>
-                    <Card.Img src={product.img} className="product-item__image" rounded fluid/>
+                    <Card.Img src={product.img} className="product-item__image" rounded="true" fluid/>
                 </a>
                 <Card.Body>
                     <Card.Text>{product.name}</Card.Text>

@@ -1,5 +1,17 @@
-import {SEARCH_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, SET_CATEGORY} from '../constants/index.js';
-import {getProductsFromAPI} from '../api/index.js';
+import {
+    SHOW_PRODUCTS,
+    FETCH_PRODUCTS,
+    FETCH_PRODUCTS_REQUEST,
+    FETCH_PRODUCTS_SUCCESS,
+    SEARCH_PRODUCTS,
+    SET_CATEGORY,
+} from '../constants/index.js';
+
+export function showProducts() {
+    return {
+        type: SHOW_PRODUCTS
+    }
+}
 
 export function setFilterCategory(category) {
     return {
@@ -15,28 +27,10 @@ export function searchProducts(searchValue) {
     }
 }
 
-export const fetchProductsIfNeeded = () => (dispatch, getState) => {
-    if (shouldFetchProducts(getState())) {
-        return dispatch(fetchProducts())
+export const fetchProducts = () => {
+    return {
+        type: FETCH_PRODUCTS
     }
-};
-
-export const shouldFetchProducts = (state) => {
-    const products = state.products;
-    if (!products.items.length) {
-        return true
-    }
-    else if (products.isFetching) {
-        return false
-    }
-};
-
-export const fetchProducts = () => dispatch => {
-
-    dispatch(fetchProductsRequest());
-
-    return getProductsFromAPI()
-        .then(data => dispatch(fetchProductsSuccess(data)));
 };
 
 export const fetchProductsRequest = () => {

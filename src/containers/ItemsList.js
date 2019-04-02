@@ -7,25 +7,23 @@ import Item from '../components/Item';
 
 class ItemsList extends Component {
 
-   /*  componentDidUpdate(prevProps) {
-        this.props.onFetchProductsIfNeeded();
-    } */
-
     render() {
         const {items, isFetching, searchValue, category} = this.props;
-        console.log(items);
-        const itemsElements = searchValue.length !== false ? items.filter((item) => {
-            return item.name.toLowerCase().includes(searchValue)
-        }) : items;
 
-        const filteredItemsElements = itemsElements.filter((item) => {
-            if (category !== "all") {
-                return item.bsr_category === category
+        const itemsElements = items.filter((item) => {
+            return item.name.toLowerCase().includes(searchValue)
+        });
+
+        const filteredItemsElements = itemsElements.filter( (item) => {
+            if (category === "All") {
+                return item;
             }
             else {
-                return true;
+                return item.bsr_category === category
             }
         });
+
+        const itemsToShow = filteredItemsElements.map((item) => <Item product={item} key={item.asin} />);
 
         return (
             <Row>
@@ -36,7 +34,7 @@ class ItemsList extends Component {
                             <span className="sr-only">Loading...</span>
                         </Spinner>
                         :
-                        filteredItemsElements.map((item) => <Item product={item} key={item.asin}/>)
+                        itemsToShow
                 }
             </Row>
         )
@@ -50,7 +48,7 @@ const mapStateToProps = (state) => {
         isFetching: true,
         items: [],
         searchValue: "",
-        category: "all"
+        category: "All"
     };
 
     return {

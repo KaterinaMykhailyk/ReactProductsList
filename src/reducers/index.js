@@ -1,18 +1,23 @@
-import {INVALIDATE_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, SEARCH_PRODUCTS, SET_CATEGORY} from "../constants";
 import {combineReducers} from 'redux';
+import {SHOW_PRODUCTS, FETCH_PRODUCTS, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, SEARCH_PRODUCTS, SET_CATEGORY} from "../constants";
 
 const products = (state = {
     isFetching: false,
     didInvalidate: false,
     items: [],
-    searchValue: "",
-    category: "all",
+    searchValue: ""
 }, action) => {
     switch (action.type) {
-        case INVALIDATE_PRODUCTS:
+        case SHOW_PRODUCTS:
+            return {
+                ...state
+            };
+        case FETCH_PRODUCTS:
             return {
                 ...state,
-                didInvalidate: true
+                isFetching: true,
+                didInvalidate: false,
+                category: "All",
             };
         case FETCH_PRODUCTS_REQUEST:
             return {

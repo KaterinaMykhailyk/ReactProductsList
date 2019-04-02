@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Input from '../components/Input';
-import {fetchProductsIfNeeded, searchProducts} from "../actions";
+import {fetchProducts, searchProducts} from "../actions";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -17,7 +17,7 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        this.props.onFetchProductsIfNeeded();
+        this.props.onFetchProducts();
     }
 
     handleClick(event) {
@@ -26,6 +26,7 @@ class Header extends Component {
 
     handleChange(event) {
         this.setState({searchValue: event.target.value.toLowerCase()});
+        this.props.onSearch(this.state.searchValue);
     }
 
     render() {
@@ -43,8 +44,8 @@ class Header extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchProductsIfNeeded: () => {
-            dispatch(fetchProductsIfNeeded());
+        onFetchProducts: () => {
+            dispatch(fetchProducts());
         },
         onSearch: (query) => {
             dispatch(searchProducts(query));
@@ -53,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 Header.propTypes = {
-    onFetchProductsIfNeeded: PropTypes.func.isRequired,
+    onFetchProducts: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired
 };
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {withRouter} from "react-router-dom";
 import Input from '../components/Input';
 import {fetchProducts, searchProducts} from "../actions";
 import Container from 'react-bootstrap/Container';
@@ -25,11 +26,25 @@ class Header extends Component {
     }
 
     handleChange(event) {
+        let location;
+        const {history} = this.props;
         this.setState({searchValue: event.target.value.toLowerCase()});
         this.props.onSearch(this.state.searchValue);
-    }
+
+        if (this.state.searchValue) {
+            console.log(this.props.history.location.pathname);
+            location = {
+                pathname: this.props.history.location.pathname,
+                search: `${event.target.value.toLowerCase()}`
+            }
+        }
+
+        history.push(location);
+    };
+
 
     render() {
+        console.log(this.props);
         return (
             <Container fluid="true">
                 <Navbar bg="light" variant="light" position="sticky-top" expand="true">
@@ -40,6 +55,7 @@ class Header extends Component {
             </Container>
         )
     }
+
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -58,4 +74,4 @@ Header.propTypes = {
     onSearch: PropTypes.func.isRequired
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default withRouter(connect(null, mapDispatchToProps)(Header));

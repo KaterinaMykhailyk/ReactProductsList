@@ -14,7 +14,7 @@ class ItemsList extends Component {
             return item.name.toLowerCase().includes(searchValue)
         });
 
-        const filteredItemsElements = itemsElements.filter( (item) => {
+        const filteredItemsElements = itemsElements.filter((item) => {
             if (category === "All") {
                 return item;
             }
@@ -23,7 +23,7 @@ class ItemsList extends Component {
             }
         });
 
-        const itemsToShow = filteredItemsElements.map((item) => <Item product={item} key={item.asin} />);
+        const itemsToShow = filteredItemsElements.map((item) => <Item product={item} key={item.asin}/>);
 
         return (
             <Row>

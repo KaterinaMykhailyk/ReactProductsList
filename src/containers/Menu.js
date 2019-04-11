@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import {setFilterCategory} from "../actions";
 
-class Menu extends Component {
+export class Menu extends Component {
 
     constructor(props) {
         super(props);
@@ -18,25 +18,14 @@ class Menu extends Component {
 
     render() {
         return (
-            <Card style={{margin: "20px"}}>
-                <Card.Header style={{padding: "20px"}}>CATEGORIES</Card.Header>
-                <ListGroup>
-                    <Link to="/all"> {<ListGroup.Item action href="#link1" style={{padding: "20px"}}
-                                                      onClick={this.handleClick}>All</ListGroup.Item>} </Link>
-                    <Link to="/home"> {<ListGroup.Item action href="#link2" style={{padding: "20px"}}
-                                                       onClick={this.handleClick}>Home &
-                        Kitchen</ListGroup.Item>} </Link>
-                    <Link to="/sports"> {<ListGroup.Item action href="#link3" style={{padding: "20px"}}
-                                                         onClick={this.handleClick}>Sports &
-                        Outdoors</ListGroup.Item>} </Link>
-                    <Link to="/health"> {<ListGroup.Item action href="#link4" style={{padding: "20px"}}
-                                                         onClick={this.handleClick}>Health & Personal
-                        Care</ListGroup.Item>} </Link>
-                    <Link to="/baby"> {<ListGroup.Item action href="#link5" style={{padding: "20px"}}
-                                                       onClick={this.handleClick}>Baby
-                        Products</ListGroup.Item>} </Link>
-                </ListGroup>
-            </Card>
+            <Row className="justify-content-end list-category">
+                <Col xs={12} className="list-category__item">CATEGORIES</Col>
+                <Col xs={12} onClick={this.handleClick} className="list-category__item"><Link to="/all">All</Link></Col>
+                <Col xs={12} onClick={this.handleClick} className="list-category__item"><Link to="/home">Home & Kitchen</Link></Col>
+                <Col xs={12} onClick={this.handleClick} className="list-category__item"><Link to="/sports">Sports & Outdoors</Link></Col>
+                <Col xs={12} onClick={this.handleClick} className="list-category__item"><Link to="/health">Health & Personal Care</Link></Col>
+                <Col xs={12} onClick={this.handleClick} className="list-category__item"><Link to="/baby">Baby Products</Link></Col>
+            </Row>
         )
     }
 }

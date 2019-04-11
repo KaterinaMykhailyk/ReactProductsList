@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 import Item from '../components/Item';
 
-class ItemsList extends Component {
+export class ItemsList extends Component {
 
     render() {
         const {items, isFetching, searchValue, category} = this.props;
@@ -26,11 +26,11 @@ class ItemsList extends Component {
         const itemsToShow = filteredItemsElements.map((item) => <Item product={item} key={item.asin}/>);
 
         return (
-            <Row>
+            <Row className="items-list" dataTest="component-items-list">
                 {
                     isFetching
                         ?
-                        <Spinner animation="border" role="status">
+                        <Spinner animation="border" role="status" className="spinner">
                             <span className="sr-only">Loading...</span>
                         </Spinner>
                         :

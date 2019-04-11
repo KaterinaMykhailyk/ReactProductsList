@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 const Item = (props) => {
     const {product} = props;
     return (
-        <Col lg="12">
-            <Card style={{marginBottom: "20px", paddingBottom: "27px"}}>
+        <Col xs={12} md={4}>
+            <Card>
                 <a href={product.link}>
                     <Card.Img src={product.img} className="product-item__image" rounded="true" fluid/>
                 </a>

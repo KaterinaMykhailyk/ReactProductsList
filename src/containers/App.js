@@ -9,14 +9,14 @@ class App extends Component {
     render() {
         return (
             <StrictMode>
-                <Row>
-                    <Header/>
-                </Row>
-                <Row style={{marginLeft: "-35px"}}>
-                    <Col sm={3} xs={12}>
+                <Row data-test='component-app'>
+                    <Col sm={12} data-test='component-header'>
+                        <Header/>
+                    </Col>
+                    <Col xs={12} md={4}  data-test='component-menu'>
                         <Menu/>
                     </Col>
-                    <Col style={{paddingTop: "19px"}}>
+                    <Col  xs={12} md={8}  data-test='component-items-list'>
                         <ItemsList/>
                     </Col>
                 </Row>
